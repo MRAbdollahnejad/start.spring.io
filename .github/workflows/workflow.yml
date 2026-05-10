@@ -17,23 +17,14 @@ jobs:
           java-version: 17
           cache: maven
 
+      - name: Make mvnw executable
+        run: chmod +x mvnw
+
       - name: Build project
         run: ./mvnw --batch-mode --update-snapshots package -DskipTests -P full
-
-      - name: Archive maven repo
-        run: tar -czf m2-repository.tar.gz ~/.m2/repository
 
       - name: Upload jar
         uses: actions/upload-artifact@v4
         with:
           name: app
-          path: start-site/target/start-site-exec.jar
-
-      - name: Upload maven cache
-        uses: actions/upload-artifact@v4
-        with:
-          name: m2-cache
-          path: m2-repository.tar.gz
-
-
-
+          path: start-site/target/*exec.jar
