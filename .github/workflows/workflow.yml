@@ -21,7 +21,7 @@ jobs:
         run: chmod +x mvnw
 
       - name: Build project
-        run: ./mvnw --batch-mode --update-snapshots package -DskipTests -P full
+        run: ./mvnw clean install -DskipTests=true -Dmaven.test.skip=true -P full
 
       - name: Upload jar
         uses: actions/upload-artifact@v4
