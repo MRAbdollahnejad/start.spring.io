@@ -21,13 +21,13 @@ jobs:
         run: ./mvnw --batch-mode --update-snapshots package -DskipTests -P full
 
       - name: Archive maven repo
-        run: tar -czf **^^**^^m2-repository.tar.gz^^**^^** ~/.m2/repository
+        run: tar -czf m2-repository.tar.gz ~/.m2/repository
 
       - name: Upload jar
         uses: actions/upload-artifact@v4
         with:
           name: app
-          path: start-site/target/**^^start-site-exec.jar^^**
+          path: start-site/target/start-site-exec.jar
 
       - name: Upload maven cache
         uses: actions/upload-artifact@v4
